@@ -22,17 +22,6 @@ module.exports = {
                 res.writeHead(200)
                 res.end(JSON.stringify(d.addUser(user)))
             })
-        } else  if (path.length === 2 && method === 'POST') {
-            req.on('data', chunk => {
-                body += chunk
-                const parseBody = new URLSearchParams(body)
-                const user = {
-                    "name": parseBody.get('name'),
-                    "age": parseInt(parseBody.get('age'))
-                }
-                res.writeHead(200)
-                res.end(JSON.stringify(d.addUser(user)))
-            })
         } else if (path.length === 3 && method === 'GET') { 
             res.writeHead(200)
             res.end(JSON.stringify(d.getUserById(parseInt(path[2]))))
